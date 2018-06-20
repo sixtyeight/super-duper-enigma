@@ -1,0 +1,20 @@
+<div class="container">
+	<table class="table table-striped">
+		<col style="width:30%">
+		<col style="width:auto">
+		<thead>
+			<tr>
+				<th colspan="2">Overview <small class="pull-right"><a href="api/applications/{{ application.id }}/git" target="_blank">raw JSON</a></small></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="entry in summary">
+				<td style="word-break: break-all;">{{ entry.key }}</td>
+				<td style="word-break: break-all;">{{ entry.value }}
+					<a ng-if="entry.key == 'git.remote.origin.url'" href="{{ entry.value }}" class="fa fa-share" target="_blank"> Open in Browser</a>
+					<span ng-if="entry.key == 'git.build.time' || entry.key == 'git.commit.time'"><span class="label">({{ application.timeSince(entry.value) }} ago)</span></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
